@@ -837,6 +837,44 @@ require('lazy').setup({
   },
 
   {
+    'xiyaowong/transparent.nvim',
+    groups = {
+      'Normal',
+      'NormalNC',
+      'Comment',
+      'Constant',
+      'Special',
+      'Identifier',
+      'Statement',
+      'PreProc',
+      'Type',
+      'Underlined',
+      'Todo',
+      'String',
+      'Function',
+      'Conditional',
+      'Repeat',
+      'Operator',
+      'Structure',
+      'LineNr',
+      'NonText',
+      'SignColumn',
+      'CursorLine',
+      'CursorLineNr',
+      'StatusLine',
+      'StatusLineNC',
+      'EndOfBuffer',
+    },
+    -- table: additional groups that should be cleared
+    extra_groups = {},
+    -- table: groups you don't want to clear
+    exclude_groups = {},
+    -- function: code to be executed after highlight groups are cleared
+    -- Also the user event "TransparentClear" will be triggered
+    on_clear = function() end,
+  },
+
+  {
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
@@ -844,10 +882,10 @@ require('lazy').setup({
       vim.cmd.colorscheme 'catppuccin'
     end,
     opts = {
-      flavour = 'mocha', -- latte, frappe, macchiato, mocha
-      background = { -- :h background
+      flavour = 'macchiato', -- latte, frappe, macchiato, mocha
+      background_color = {
         light = 'latte',
-        dark = 'mocha',
+        dark = 'macchiato',
       },
       transparent_background = true, -- disables setting the background color.
       show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
