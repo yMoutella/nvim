@@ -9,7 +9,6 @@
 ========         ||                    ||   |-----|          ========
 ========         ||:Tutor              ||   |:::::|          ========
 ========         |'-..................-'|   |____o|          ========
-========         `"")----------------(""`   ___________      ========
 ========        /::::::::::|  |::::::::::\  \ no mouse \     ========
 ========       /:::========|  |==hjkl==:::\  \ required \    ========
 ========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
@@ -271,6 +270,17 @@ require('lazy').setup({
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
   {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    },
+  },
+
+  {
     'akinsho/toggleterm.nvim',
     version = '*',
     config = function()
@@ -331,6 +341,7 @@ require('lazy').setup({
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
+        { '<leader>e', group = '[E]xplorer' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
@@ -426,7 +437,16 @@ require('lazy').setup({
       -- ToogleTerm keymaps
 
       vim.keymap.set('n', '<C-_>', '<cmd>ToggleTerm<CR>', { desc = 'Open ToggleTerm terminal' })
+
+      -- GrugFar keymaps
+      --
       vim.keymap.set('n', '<leader>sr', '<cmd>GrugFar<CR>', { desc = 'Search and replace' })
+
+      -- Neotree keymaps
+
+      vim.keymap.set('n', '<leader>ee', '<cmd>Neotree reveal <CR>', { desc = '[e]xplorer' })
+      vim.keymap.set('n', '<leader>eb', '<cmd>Neotree reveal right show buffers<CR>', { desc = '[B]uffers' })
+      vim.keymap.set('n', '<leader>eg', '<cmd>Neotree reveal right show git_status<CR>', { desc = '[G]it status' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
