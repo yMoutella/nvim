@@ -868,7 +868,7 @@ require('lazy').setup({
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
           --['<CR>'] = cmp.mapping.confirm { select = true },
-          --['<Tab>'] = cmp.mapping.select_next_item(),
+          ['<Tab>'] = cmp.mapping.select_next_item(),
           --['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
           -- Manually trigger a completion from nvim-cmp.
@@ -963,6 +963,12 @@ require('lazy').setup({
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      local base16 = require 'lualine.themes.base16'
+      require('lualine').setup {
+        options = { theme = base16 },
+      }
+    end,
     opts = {
       icons_enabled = true,
       component_separators = { left = '', right = '' },
