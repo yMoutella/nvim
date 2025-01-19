@@ -487,6 +487,13 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>eb', '<cmd>Neotree reveal right show buffers<CR>', { desc = '[B]uffers' })
       vim.keymap.set('n', '<leader>eg', '<cmd>Neotree reveal right show git_status<CR>', { desc = '[G]it status' })
 
+      -- Tmux keymaps
+
+      vim.keymap.set('n', '<C-h>', '<cmd> TmuxNavigateLeft <CR>', { desc = 'Tmux Window left' })
+      vim.keymap.set('n', '<C-j>', '<cmd> TmuxNavigateDown <CR>', { desc = 'Tmux Window Down' })
+      vim.keymap.set('n', '<C-k>', '<cmd> TmuxNavigateUp <CR>', { desc = 'Tmux Window Up' })
+      vim.keymap.set('n', '<C-l>', '<cmd> TmuxNavigateRight <CR>', { desc = 'Tmux Window Right' })
+
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
@@ -964,9 +971,9 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      local base16 = require 'lualine.themes.base16'
+      local auto = require 'lualine.themes.auto'
       require('lualine').setup {
-        options = { theme = base16 },
+        options = { theme = auto },
       }
     end,
     opts = {
@@ -1009,11 +1016,18 @@ require('lazy').setup({
     extensions = {},
   },
   {
+    'ThePrimeagen/vim-be-good',
+  },
+
+  { 'christoomey/vim-tmux-navigator', lazy = false },
+
+  {
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
     init = function()
       vim.cmd.colorscheme 'catppuccin'
+      vim.cmd.hi 'Comment gui=none'
     end,
     opts = {
       flavour = 'macchiato', -- latte, frappe, macchiato, mocha
@@ -1064,25 +1078,6 @@ require('lazy').setup({
       },
     },
   },
-
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
-
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
