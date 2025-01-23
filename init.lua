@@ -278,6 +278,13 @@ require('lazy').setup({
       'MunifTanjim/nui.nvim',
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
+    opts = {
+      filesystem = {
+        filtered_items = {
+          visible = true,
+        },
+      },
+    },
   },
   {
     'folke/noice.nvim',
@@ -448,7 +455,11 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -1023,6 +1034,21 @@ require('lazy').setup({
 
   { 'mfussenegger/nvim-jdtls' },
 
+  {
+    'akinsho/toggleterm.nvim',
+  },
+  {
+    'Fire-The-Fox/bun.nvim',
+    config = function()
+      require('bun').setup {
+        close_on_exit = true, -- if the terminal window should close instantly after bun exited
+        cwd = 'current',-- run_current's working directory
+        -- if "current" it will use current working directory of NeoVim
+        -- if "relative" it will use directory where the file is located
+        direction = 'horizontal',-- float will create floating window and horizontal will put it under buffers
+      }
+    end,
+  },
   {
     'catppuccin/nvim',
     name = 'catppuccin',
