@@ -1021,6 +1021,8 @@ require('lazy').setup({
 
   { 'christoomey/vim-tmux-navigator', lazy = false },
 
+  { 'mfussenegger/nvim-jdtls' },
+
   {
     'catppuccin/nvim',
     name = 'catppuccin',
