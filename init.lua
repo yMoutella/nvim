@@ -1030,7 +1030,24 @@ require('lazy').setup({
     'ThePrimeagen/vim-be-good',
   },
 
-  { 'christoomey/vim-tmux-navigator', lazy = false },
+  {
+    'christoomey/vim-tmux-navigator',
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+      'TmuxNavigatorProcessList',
+    },
+    keys = {
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
+  },
 
   { 'mfussenegger/nvim-jdtls' },
 
@@ -1042,10 +1059,10 @@ require('lazy').setup({
     config = function()
       require('bun').setup {
         close_on_exit = true, -- if the terminal window should close instantly after bun exited
-        cwd = 'current',-- run_current's working directory
+        cwd = 'current', -- run_current's working directory
         -- if "current" it will use current working directory of NeoVim
         -- if "relative" it will use directory where the file is located
-        direction = 'horizontal',-- float will create floating window and horizontal will put it under buffers
+        direction = 'horizontal', -- float will create floating window and horizontal will put it under buffers
       }
     end,
   },
