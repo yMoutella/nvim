@@ -399,6 +399,15 @@ require('lazy').setup({
   -- you do for a plugin at the top level, you can do for a dependency.
   --
   -- Use the `dependencies` key to specify the dependencies of a particular plugin
+  -- Plugins begin --
+
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
+  },
 
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -1030,24 +1039,7 @@ require('lazy').setup({
     'ThePrimeagen/vim-be-good',
   },
 
-  {
-    'christoomey/vim-tmux-navigator',
-    cmd = {
-      'TmuxNavigateLeft',
-      'TmuxNavigateDown',
-      'TmuxNavigateUp',
-      'TmuxNavigateRight',
-      'TmuxNavigatePrevious',
-      'TmuxNavigatorProcessList',
-    },
-    keys = {
-      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
-      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
-      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
-      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
-      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
-    },
-  },
+  { 'christoomey/vim-tmux-navigator', lazy = false },
 
   { 'mfussenegger/nvim-jdtls' },
 
@@ -1066,6 +1058,14 @@ require('lazy').setup({
       }
     end,
   },
+  {
+    'L3MON4D3/LuaSnip',
+    -- follow latest release.
+    version = 'v2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = 'make install_jsregexp',
+  },
+
   {
     'catppuccin/nvim',
     name = 'catppuccin',
@@ -1180,6 +1180,8 @@ require('lazy').setup({
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },
+      autopairs = { enable = true },
+      autotag = { enable = true },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
